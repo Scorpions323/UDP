@@ -1,15 +1,18 @@
-package es.etg.dam;
+package es.etg.dam.usuarios;
 
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-public class Receptor {
+import es.etg.dam.mensajes.Enviar;
+import es.etg.dam.mensajes.Recibir;
 
-    private final static int PUERTO_ENVIO = 8080;
-    private final static int PUERTO_ESCUCHA = 8081;
+public class Usuario_1 {
 
-    private final static String HOST = "localhost";
-    private final static String MENSAJE_PROMPT = "Escribe un mensaje: ";
+    public final static int PUERTO_ENVIO = 8081;
+    public final static int PUERTO_ESCUCHA = 8080;
+
+    public final static String HOST = "localhost";
+    public final static String MENSAJE_PROMPT = "Escribe un mensaje: ";
 
     public static void main(String[] args) throws Exception {
 

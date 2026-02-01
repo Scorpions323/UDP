@@ -1,24 +1,21 @@
-package es.etg.dam;
+package es.etg.dam.mensajes;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class Enviar extends Thread {
 
     private final DatagramSocket socket;
     private final InetAddress destino;
     private final int puertoDestino;
     private final String mensajePrompt;
-
-    public Enviar(DatagramSocket socket, InetAddress destino, int puertoDestino, String mensajePrompt) {
-        this.socket = socket;
-        this.destino = destino;
-        this.puertoDestino = puertoDestino;
-        this.mensajePrompt = mensajePrompt;
-    }
 
     @Override
     public void run() {
@@ -31,8 +28,8 @@ public class Enviar extends Thread {
                 DatagramPacket msg = new DatagramPacket(mensaje, mensaje.length, destino, puertoDestino);
                 socket.send(msg);
             }
-        } catch (Exception e) {
-            new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

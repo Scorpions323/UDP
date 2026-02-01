@@ -1,19 +1,18 @@
-package es.etg.dam;
+package es.etg.dam.mensajes;
 
+import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class Recibir extends Thread {
 
     private final DatagramSocket socket;
     private final String mensajePrompt;
     private final static int BUFFER = 256;
     private final static String MENSAJE = "\tMensaje recibido: ";
-
-    public Recibir(DatagramSocket socket, String mensajePrompt) {
-        this.socket = socket;
-        this.mensajePrompt = mensajePrompt;
-    }
 
     @Override
     public void run() {
@@ -28,8 +27,8 @@ public class Recibir extends Thread {
                 System.out.println(MENSAJE + datos);
                 System.out.print(mensajePrompt);
             }
-        } catch (Exception e) {
-            new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
